@@ -1,0 +1,252 @@
+(asteroid_2) dangsx@deepest:~/asteroid/egs/librimix/dilatedDPRNN$ python train_e2e_noisy_sep.py
+2023-08-06 00:17:41 | INFO | fairseq.tasks.text_to_speech | Please install tensorboardX: pip install tensorboardX
+{'data': {'n_src': 2,
+          'sample_rate': 8000,
+          'segment': 3,
+          'task': 'sep_noisy',
+          'train_dir': 'data/wav8k/min/train-100',
+          'valid_dir': 'data/wav8k/min/dev'},
+ 'filterbank': {'kernel_size': 16, 'n_filters': 64, 'stride': 8},
+ 'main_args': {'exp_dir': 'exp/diff_e2e/new/enh_sep_6_baseline', 'help': None},
+ 'masknet': {'bidirectional': True,
+             'bn_chan': 128,
+             'chunk_size': 250,
+             'dropout': 0,
+             'hid_size': 128,
+             'hop_size': 125,
+             'in_chan': 64,
+             'mask_act': 'sigmoid',
+             'n_repeats': 6,
+             'out_chan': 64},
+ 'optim': {'lr': 0.001, 'optimizer': 'adam', 'weight_decay': 1e-05},
+ 'positional arguments': {},
+ 'training': {'batch_size': 4,
+              'early_stop': True,
+              'epochs': 120,
+              'gradient_clipping': 5,
+              'half_lr': True,
+              'num_workers': 6}}
+Drop 0 utterances from 13900 (shorter than 3 seconds)
+Drop 0 utterances from 3000 (shorter than 3 seconds)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+`Trainer(limit_train_batches=1.0)` was configured so 100% of the batches per epoch will be used..
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+2023-08-06 00:17:42 | INFO | torch.distributed.distributed_c10d | Added key: store_based_barrier_key:1 to store for rank: 0
+2023-08-06 00:17:42 | INFO | torch.distributed.distributed_c10d | Rank 0: Completed store-based barrier for key:store_based_barrier_key:1 with 1 nodes.
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 1 processes
+----------------------------------------------------------------------------------------------------
+
+You are using a CUDA device ('NVIDIA GeForce RTX 3080 Ti') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+Missing logger folder: exp/diff_e2e/new/enh_sep_6_baseline/lightning_logs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name      | Type           | Params
+---------------------------------------------
+0 | model     | DPRNNTasNet    | 3.7 M
+1 | loss_func | PITLossWrapper | 0
+---------------------------------------------
+3.7 M     Trainable params
+0         Non-trainable params
+3.7 M     Total params
+14.611    Total estimated model params size (MB)
+Sanity Checking DataLoader 0: 100%|| 2/2 [00:01<00:00,  1.41it/s]/home/dangsx/.virtualenvs/asteroid_2/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/logger_connector/result.py:432: PossibleUserWarning: It is recommended to use `self.log('val_loss', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+  warning_cache.warn(
+Epoch 0:   0%|                                                                                                                                                                            | 1/3475 [00:04<4:42:19,  4.88s/it, v_num=0]2023-08-06 00:17:52 | INFO | torch.nn.parallel.distributed | Reducer buckets have been rebuilt in this iteration.
+Epoch 0: 100%|| 3475/3475 [14:18<00:00,  4.05it/s, v_num=0, val_loss=-1.34]Metric val_loss improved. New best score: -1.344
+Epoch 0, global step 3475: 'val_loss' reached -1.34369 (best -1.34369), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=0-step=3475.ckpt' as top 5
+Epoch 1: 100%|| 3475/3475 [06:34<00:00,  8.81it/s, v_num=0, val_loss=-2.15]Metric val_loss improved by 0.803 >= min_delta = 0.0. New best score: -2.147
+Epoch 1, global step 6950: 'val_loss' reached -2.14694 (best -2.14694), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=1-step=6950.ckpt' as top 5
+Epoch 2: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-2.56]Metric val_loss improved by 0.412 >= min_delta = 0.0. New best score: -2.559
+Epoch 2, global step 10425: 'val_loss' reached -2.55919 (best -2.55919), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=2-step=10425.ckpt' as top 5
+Epoch 3: 100%|| 3475/3475 [06:44<00:00,  8.59it/s, v_num=0, val_loss=-3.28]Metric val_loss improved by 0.720 >= min_delta = 0.0. New best score: -3.279
+Epoch 3, global step 13900: 'val_loss' reached -3.27916 (best -3.27916), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=3-step=13900.ckpt' as top 5
+Epoch 4: 100%|| 3475/3475 [06:47<00:00,  8.52it/s, v_num=0, val_loss=-3.44]Metric val_loss improved by 0.163 >= min_delta = 0.0. New best score: -3.443
+Epoch 4, global step 17375: 'val_loss' reached -3.44255 (best -3.44255), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=4-step=17375.ckpt' as top 5
+Epoch 5: 100%|| 3475/3475 [06:42<00:00,  8.64it/s, v_num=0, val_loss=-4.14]Metric val_loss improved by 0.694 >= min_delta = 0.0. New best score: -4.136
+Epoch 5, global step 20850: 'val_loss' reached -4.13613 (best -4.13613), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=5-step=20850.ckpt' as top 5
+Epoch 6: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-4.45]Metric val_loss improved by 0.309 >= min_delta = 0.0. New best score: -4.445
+Epoch 6, global step 24325: 'val_loss' reached -4.44500 (best -4.44500), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=6-step=24325.ckpt' as top 5
+Epoch 7: 100%|| 3475/3475 [06:42<00:00,  8.63it/s, v_num=0, val_loss=-4.70]Metric val_loss improved by 0.253 >= min_delta = 0.0. New best score: -4.698
+Epoch 7, global step 27800: 'val_loss' reached -4.69826 (best -4.69826), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=7-step=27800.ckpt' as top 5
+Epoch 8: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-5.25]Metric val_loss improved by 0.551 >= min_delta = 0.0. New best score: -5.250
+Epoch 8, global step 31275: 'val_loss' reached -5.24975 (best -5.24975), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=8-step=31275.ckpt' as top 5
+Epoch 9: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-5.35]Metric val_loss improved by 0.101 >= min_delta = 0.0. New best score: -5.350
+Epoch 9, global step 34750: 'val_loss' reached -5.35046 (best -5.35046), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=9-step=34750.ckpt' as top 5
+Epoch 10: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-5.85]Metric val_loss improved by 0.497 >= min_delta = 0.0. New best score: -5.847
+Epoch 10, global step 38225: 'val_loss' reached -5.84744 (best -5.84744), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=10-step=38225.ckpt' as top 5
+Epoch 11: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-5.98]Metric val_loss improved by 0.133 >= min_delta = 0.0. New best score: -5.980
+Epoch 11, global step 41700: 'val_loss' reached -5.98040 (best -5.98040), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=11-step=41700.ckpt' as top 5
+Epoch 12: 100%|| 3475/3475 [06:46<00:00,  8.56it/s, v_num=0, val_loss=-6.21]Metric val_loss improved by 0.230 >= min_delta = 0.0. New best score: -6.210
+Epoch 12, global step 45175: 'val_loss' reached -6.21037 (best -6.21037), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=12-step=45175.ckpt' as top 5
+Epoch 13: 100%|| 3475/3475 [06:46<00:00,  8.54it/s, v_num=0, val_loss=-6.50]Metric val_loss improved by 0.293 >= min_delta = 0.0. New best score: -6.504
+Epoch 13, global step 48650: 'val_loss' reached -6.50384 (best -6.50384), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=13-step=48650.ckpt' as top 5
+Epoch 14: 100%|| 3475/3475 [06:45<00:00,  8.56it/s, v_num=0, val_loss=-6.76]Metric val_loss improved by 0.254 >= min_delta = 0.0. New best score: -6.758
+Epoch 14, global step 52125: 'val_loss' reached -6.75833 (best -6.75833), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=14-step=52125.ckpt' as top 5
+Epoch 15: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-6.66]Epoch 15, global step 55600: 'val_loss' reached -6.66365 (best -6.75833), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=15-step=55600.ckpt' as top 5
+Epoch 16: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-7.13]Metric val_loss improved by 0.374 >= min_delta = 0.0. New best score: -7.132
+Epoch 16, global step 59075: 'val_loss' reached -7.13215 (best -7.13215), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=16-step=59075.ckpt' as top 5
+Epoch 17: 100%|| 3475/3475 [06:46<00:00,  8.54it/s, v_num=0, val_loss=-7.08]Epoch 17, global step 62550: 'val_loss' reached -7.07671 (best -7.13215), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=17-step=62550.ckpt' as top 5
+Epoch 18: 100%|| 3475/3475 [06:46<00:00,  8.54it/s, v_num=0, val_loss=-7.41]Metric val_loss improved by 0.282 >= min_delta = 0.0. New best score: -7.414
+Epoch 18, global step 66025: 'val_loss' reached -7.41370 (best -7.41370), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=18-step=66025.ckpt' as top 5
+Epoch 19: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-7.45]Metric val_loss improved by 0.035 >= min_delta = 0.0. New best score: -7.449
+Epoch 19, global step 69500: 'val_loss' reached -7.44862 (best -7.44862), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=19-step=69500.ckpt' as top 5
+Epoch 20: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-7.74]Metric val_loss improved by 0.295 >= min_delta = 0.0. New best score: -7.743
+Epoch 20, global step 72975: 'val_loss' reached -7.74321 (best -7.74321), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=20-step=72975.ckpt' as top 5
+Epoch 21: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-7.58]Epoch 21, global step 76450: 'val_loss' reached -7.57682 (best -7.74321), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=21-step=76450.ckpt' as top 5
+Epoch 22: 100%|| 3475/3475 [06:46<00:00,  8.56it/s, v_num=0, val_loss=-7.92]Metric val_loss improved by 0.180 >= min_delta = 0.0. New best score: -7.923
+Epoch 22, global step 79925: 'val_loss' reached -7.92309 (best -7.92309), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=22-step=79925.ckpt' as top 5
+Epoch 23: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-7.90]Epoch 23, global step 83400: 'val_loss' reached -7.90039 (best -7.92309), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=23-step=83400.ckpt' as top 5
+Epoch 24: 100%|| 3475/3475 [06:46<00:00,  8.56it/s, v_num=0, val_loss=-8.03]Metric val_loss improved by 0.105 >= min_delta = 0.0. New best score: -8.028
+Epoch 24, global step 86875: 'val_loss' reached -8.02806 (best -8.02806), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=24-step=86875.ckpt' as top 5
+Epoch 25: 100%|| 3475/3475 [06:45<00:00,  8.57it/s, v_num=0, val_loss=-8.21]Metric val_loss improved by 0.182 >= min_delta = 0.0. New best score: -8.210
+Epoch 25, global step 90350: 'val_loss' reached -8.20970 (best -8.20970), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=25-step=90350.ckpt' as top 5
+Epoch 26: 100%|| 3475/3475 [06:45<00:00,  8.56it/s, v_num=0, val_loss=-8.08]Epoch 26, global step 93825: 'val_loss' reached -8.07875 (best -8.20970), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=26-step=93825.ckpt' as top 5
+Epoch 27: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-8.23]Metric val_loss improved by 0.017 >= min_delta = 0.0. New best score: -8.227
+Epoch 27, global step 97300: 'val_loss' reached -8.22666 (best -8.22666), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=27-step=97300.ckpt' as top 5
+Epoch 28: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-8.17]Epoch 28, global step 100775: 'val_loss' reached -8.16719 (best -8.22666), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=28-step=100775.ckpt' as top 5
+Epoch 29: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-8.40]Metric val_loss improved by 0.172 >= min_delta = 0.0. New best score: -8.399
+Epoch 29, global step 104250: 'val_loss' reached -8.39858 (best -8.39858), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=29-step=104250.ckpt' as top 5
+Epoch 30: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-8.48]Metric val_loss improved by 0.078 >= min_delta = 0.0. New best score: -8.477
+Epoch 30, global step 107725: 'val_loss' reached -8.47690 (best -8.47690), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=30-step=107725.ckpt' as top 5
+Epoch 31: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-8.60]Metric val_loss improved by 0.123 >= min_delta = 0.0. New best score: -8.600
+Epoch 31, global step 111200: 'val_loss' reached -8.60030 (best -8.60030), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=31-step=111200.ckpt' as top 5
+Epoch 32: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-8.47]Epoch 32, global step 114675: 'val_loss' reached -8.46522 (best -8.60030), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=32-step=114675.ckpt' as top 5
+Epoch 33: 100%|| 3475/3475 [06:45<00:00,  8.56it/s, v_num=0, val_loss=-8.64]Metric val_loss improved by 0.044 >= min_delta = 0.0. New best score: -8.644
+Epoch 33, global step 118150: 'val_loss' reached -8.64417 (best -8.64417), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=33-step=118150.ckpt' as top 5
+Epoch 34: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-8.67]Metric val_loss improved by 0.028 >= min_delta = 0.0. New best score: -8.672
+Epoch 34, global step 121625: 'val_loss' reached -8.67224 (best -8.67224), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=34-step=121625.ckpt' as top 5
+Epoch 35: 100%|| 3475/3475 [06:46<00:00,  8.54it/s, v_num=0, val_loss=-8.66]Epoch 35, global step 125100: 'val_loss' reached -8.66338 (best -8.67224), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=35-step=125100.ckpt' as top 5
+Epoch 36: 100%|| 3475/3475 [06:45<00:00,  8.57it/s, v_num=0, val_loss=-8.78]Metric val_loss improved by 0.111 >= min_delta = 0.0. New best score: -8.783
+Epoch 36, global step 128575: 'val_loss' reached -8.78315 (best -8.78315), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=36-step=128575.ckpt' as top 5
+Epoch 37: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-8.76]Epoch 37, global step 132050: 'val_loss' reached -8.75874 (best -8.78315), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=37-step=132050.ckpt' as top 5
+Epoch 38: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-8.86]Metric val_loss improved by 0.073 >= min_delta = 0.0. New best score: -8.856
+Epoch 38, global step 135525: 'val_loss' reached -8.85583 (best -8.85583), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=38-step=135525.ckpt' as top 5
+Epoch 39: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-8.75]Epoch 39, global step 139000: 'val_loss' reached -8.74856 (best -8.85583), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=39-step=139000.ckpt' as top 5
+Epoch 40: 100%|| 3475/3475 [06:45<00:00,  8.58it/s, v_num=0, val_loss=-8.81]Epoch 40, global step 142475: 'val_loss' reached -8.81381 (best -8.85583), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=40-step=142475.ckpt' as top 5
+Epoch 41: 100%|| 3475/3475 [06:47<00:00,  8.54it/s, v_num=0, val_loss=-8.57]Epoch 41, global step 145950: 'val_loss' was not in top 5
+Epoch 42: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-9.08]Metric val_loss improved by 0.226 >= min_delta = 0.0. New best score: -9.082
+Epoch 42, global step 149425: 'val_loss' reached -9.08193 (best -9.08193), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=42-step=149425.ckpt' as top 5
+Epoch 43: 100%|| 3475/3475 [06:45<00:00,  8.56it/s, v_num=0, val_loss=-8.98]Epoch 43, global step 152900: 'val_loss' reached -8.98265 (best -9.08193), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=43-step=152900.ckpt' as top 5
+Epoch 44: 100%|| 3475/3475 [06:47<00:00,  8.52it/s, v_num=0, val_loss=-8.97]Epoch 44, global step 156375: 'val_loss' reached -8.97455 (best -9.08193), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=44-step=156375.ckpt' as top 5
+Epoch 45: 100%|| 3475/3475 [06:46<00:00,  8.56it/s, v_num=0, val_loss=-8.97]Epoch 45, global step 159850: 'val_loss' reached -8.96782 (best -9.08193), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=45-step=159850.ckpt' as top 5
+Epoch 46: 100%|| 3475/3475 [06:45<00:00,  8.56it/s, v_num=0, val_loss=-9.11]Metric val_loss improved by 0.031 >= min_delta = 0.0. New best score: -9.113
+Epoch 46, global step 163325: 'val_loss' reached -9.11323 (best -9.11323), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=46-step=163325.ckpt' as top 5
+Epoch 47: 100%|| 3475/3475 [06:47<00:00,  8.53it/s, v_num=0, val_loss=-9.00]Epoch 47, global step 166800: 'val_loss' reached -9.00358 (best -9.11323), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=47-step=166800.ckpt' as top 5
+Epoch 48: 100%|| 3475/3475 [06:47<00:00,  8.54it/s, v_num=0, val_loss=-9.04]Epoch 48, global step 170275: 'val_loss' reached -9.03811 (best -9.11323), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=48-step=170275.ckpt' as top 5
+Epoch 49: 100%|| 3475/3475 [06:46<00:00,  8.54it/s, v_num=0, val_loss=-9.03]Epoch 49, global step 173750: 'val_loss' reached -9.02743 (best -9.11323), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=49-step=173750.ckpt' as top 5
+Epoch 50: 100%|| 3475/3475 [06:46<00:00,  8.54it/s, v_num=0, val_loss=-9.18]Metric val_loss improved by 0.071 >= min_delta = 0.0. New best score: -9.185
+Epoch 50, global step 177225: 'val_loss' reached -9.18457 (best -9.18457), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=50-step=177225.ckpt' as top 5
+Epoch 51: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-9.16]Epoch 51, global step 180700: 'val_loss' reached -9.15635 (best -9.18457), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=51-step=180700.ckpt' as top 5
+Epoch 52: 100%|| 3475/3475 [06:46<00:00,  8.55it/s, v_num=0, val_loss=-9.28]Metric val_loss improved by 0.097 >= min_delta = 0.0. New best score: -9.282
+Epoch 52, global step 184175: 'val_loss' reached -9.28165 (best -9.28165), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=52-step=184175.ckpt' as top 5
+Epoch 53: 100%|| 3475/3475 [06:46<00:00,  8.54it/s, v_num=0, val_loss=-9.20]Epoch 53, global step 187650: 'val_loss' reached -9.19721 (best -9.28165), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=53-step=187650.ckpt' as top 5
+Epoch 54: 100%|| 3475/3475 [06:46<00:00,  8.54it/s, v_num=0, val_loss=-9.21]Epoch 54, global step 191125: 'val_loss' reached -9.20648 (best -9.28165), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=54-step=191125.ckpt' as top 5
+Epoch 55: 100%|| 3475/3475 [06:47<00:00,  8.53it/s, v_num=0, val_loss=-9.24]Epoch 55, global step 194600: 'val_loss' reached -9.23889 (best -9.28165), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=55-step=194600.ckpt' as top 5
+Epoch 56: 100%|| 3475/3475 [06:47<00:00,  8.53it/s, v_num=0, val_loss=-9.30]Metric val_loss improved by 0.023 >= min_delta = 0.0. New best score: -9.305
+Epoch 56, global step 198075: 'val_loss' reached -9.30489 (best -9.30489), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=56-step=198075.ckpt' as top 5
+Epoch 57: 100%|| 3475/3475 [06:47<00:00,  8.53it/s, v_num=0, val_loss=-9.39]Metric val_loss improved by 0.083 >= min_delta = 0.0. New best score: -9.388
+Epoch 57, global step 201550: 'val_loss' reached -9.38772 (best -9.38772), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=57-step=201550.ckpt' as top 5
+Epoch 58: 100%|| 3475/3475 [06:47<00:00,  8.52it/s, v_num=0, val_loss=-9.33]Epoch 58, global step 205025: 'val_loss' reached -9.32903 (best -9.38772), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=58-step=205025.ckpt' as top 5
+Epoch 59: 100%|| 3475/3475 [06:49<00:00,  8.49it/s, v_num=0, val_loss=-9.44]Metric val_loss improved by 0.056 >= min_delta = 0.0. New best score: -9.443
+Epoch 59, global step 208500: 'val_loss' reached -9.44343 (best -9.44343), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=59-step=208500.ckpt' as top 5
+Epoch 60: 100%|| 3475/3475 [06:48<00:00,  8.52it/s, v_num=0, val_loss=-9.35]Epoch 60, global step 211975: 'val_loss' reached -9.35206 (best -9.44343), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=60-step=211975.ckpt' as top 5
+Epoch 61: 100%|| 3475/3475 [06:46<00:00,  8.54it/s, v_num=0, val_loss=-9.23]Epoch 61, global step 215450: 'val_loss' was not in top 5
+Epoch 62: 100%|| 3475/3475 [06:48<00:00,  8.50it/s, v_num=0, val_loss=-9.49]Metric val_loss improved by 0.042 >= min_delta = 0.0. New best score: -9.485
+Epoch 62, global step 218925: 'val_loss' reached -9.48538 (best -9.48538), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=62-step=218925.ckpt' as top 5
+Epoch 63: 100%|| 3475/3475 [06:49<00:00,  8.48it/s, v_num=0, val_loss=-9.41]Epoch 63, global step 222400: 'val_loss' reached -9.40568 (best -9.48538), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=63-step=222400.ckpt' as top 5
+Epoch 64: 100%|| 3475/3475 [06:50<00:00,  8.47it/s, v_num=0, val_loss=-9.46]Epoch 64, global step 225875: 'val_loss' reached -9.46265 (best -9.48538), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=64-step=225875.ckpt' as top 5
+Epoch 65: 100%|| 3475/3475 [06:50<00:00,  8.46it/s, v_num=0, val_loss=-9.41]Epoch 65, global step 229350: 'val_loss' reached -9.41444 (best -9.48538), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=65-step=229350.ckpt' as top 5
+Epoch 66: 100%|| 3475/3475 [06:49<00:00,  8.48it/s, v_num=0, val_loss=-9.40]Epoch 66, global step 232825: 'val_loss' was not in top 5
+Epoch 67: 100%|| 3475/3475 [06:50<00:00,  8.48it/s, v_num=0, val_loss=-9.50]Metric val_loss improved by 0.012 >= min_delta = 0.0. New best score: -9.497
+Epoch 67, global step 236300: 'val_loss' reached -9.49710 (best -9.49710), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=67-step=236300.ckpt' as top 5
+Epoch 68: 100%|| 3475/3475 [06:50<00:00,  8.46it/s, v_num=0, val_loss=-9.43]Epoch 68, global step 239775: 'val_loss' reached -9.42629 (best -9.49710), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=68-step=239775.ckpt' as top 5
+Epoch 69: 100%|| 3475/3475 [06:50<00:00,  8.47it/s, v_num=0, val_loss=-9.45]Epoch 69, global step 243250: 'val_loss' reached -9.45315 (best -9.49710), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=69-step=243250.ckpt' as top 5
+Epoch 70: 100%|| 3475/3475 [06:51<00:00,  8.45it/s, v_num=0, val_loss=-9.51]Metric val_loss improved by 0.016 >= min_delta = 0.0. New best score: -9.513
+Epoch 70, global step 246725: 'val_loss' reached -9.51268 (best -9.51268), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=70-step=246725.ckpt' as top 5
+Epoch 71: 100%|| 3475/3475 [06:48<00:00,  8.52it/s, v_num=0, val_loss=-9.53]Metric val_loss improved by 0.015 >= min_delta = 0.0. New best score: -9.528
+Epoch 71, global step 250200: 'val_loss' reached -9.52810 (best -9.52810), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=71-step=250200.ckpt' as top 5
+Epoch 72: 100%|| 3475/3475 [06:51<00:00,  8.44it/s, v_num=0, val_loss=-9.65]Metric val_loss improved by 0.118 >= min_delta = 0.0. New best score: -9.646
+Epoch 72, global step 253675: 'val_loss' reached -9.64596 (best -9.64596), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=72-step=253675.ckpt' as top 5
+Epoch 73: 100%|| 3475/3475 [06:51<00:00,  8.45it/s, v_num=0, val_loss=-9.48]Epoch 73, global step 257150: 'val_loss' was not in top 5
+Epoch 74: 100%|| 3475/3475 [06:51<00:00,  8.45it/s, v_num=0, val_loss=-9.67]Metric val_loss improved by 0.027 >= min_delta = 0.0. New best score: -9.673
+Epoch 74, global step 260625: 'val_loss' reached -9.67331 (best -9.67331), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=74-step=260625.ckpt' as top 5
+Epoch 75: 100%|| 3475/3475 [06:51<00:00,  8.45it/s, v_num=0, val_loss=-9.58]Epoch 75, global step 264100: 'val_loss' reached -9.57534 (best -9.67331), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=75-step=264100.ckpt' as top 5
+Epoch 76: 100%|| 3475/3475 [06:51<00:00,  8.44it/s, v_num=0, val_loss=-9.59]Epoch 76, global step 267575: 'val_loss' reached -9.58852 (best -9.67331), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=76-step=267575.ckpt' as top 5
+Epoch 77: 100%|| 3475/3475 [06:48<00:00,  8.50it/s, v_num=0, val_loss=-9.46]Epoch 77, global step 271050: 'val_loss' was not in top 5
+Epoch 78: 100%|| 3475/3475 [06:53<00:00,  8.39it/s, v_num=0, val_loss=-9.67]Metric val_loss improved by 0.000 >= min_delta = 0.0. New best score: -9.673
+Epoch 78, global step 274525: 'val_loss' reached -9.67332 (best -9.67332), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=78-step=274525.ckpt' as top 5
+Epoch 79: 100%|| 3475/3475 [06:47<00:00,  8.54it/s, v_num=0, val_loss=-9.46]Epoch 79, global step 278000: 'val_loss' was not in top 5
+Epoch 80: 100%|| 3475/3475 [06:54<00:00,  8.39it/s, v_num=0, val_loss=-9.56]Epoch 80, global step 281475: 'val_loss' was not in top 5
+Epoch 81: 100%|| 3475/3475 [06:47<00:00,  8.52it/s, v_num=0, val_loss=-9.54]Epoch 81, global step 284950: 'val_loss' was not in top 5
+Epoch 82: 100%|| 3475/3475 [06:50<00:00,  8.47it/s, v_num=0, val_loss=-9.48]Epoch 82, global step 288425: 'val_loss' was not in top 5
+Epoch 83: 100%|| 3475/3475 [06:53<00:00,  8.41it/s, v_num=0, val_loss=-9.67]Epoch 83, global step 291900: 'val_loss' reached -9.66896 (best -9.67332), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=83-step=291900.ckpt' as top 5
+Epoch 84: 100%|| 3475/3475 [06:51<00:00,  8.44it/s, v_num=0, val_loss=-9.60]Epoch 84, global step 295375: 'val_loss' reached -9.60034 (best -9.67332), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=84-step=295375.ckpt' as top 5
+Epoch 85: 100%|| 3475/3475 [06:51<00:00,  8.44it/s, v_num=0, val_loss=-10.1]Metric val_loss improved by 0.403 >= min_delta = 0.0. New best score: -10.076
+Epoch 85, global step 298850: 'val_loss' reached -10.07600 (best -10.07600), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=85-step=298850.ckpt' as top 5
+Epoch 86: 100%|| 3475/3475 [06:52<00:00,  8.43it/s, v_num=0, val_loss=-10.1]Metric val_loss improved by 0.032 >= min_delta = 0.0. New best score: -10.108
+Epoch 86, global step 302325: 'val_loss' reached -10.10849 (best -10.10849), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=86-step=302325.ckpt' as top 5
+Epoch 87: 100%|| 3475/3475 [06:52<00:00,  8.42it/s, v_num=0, val_loss=-10.2]Metric val_loss improved by 0.074 >= min_delta = 0.0. New best score: -10.183
+Epoch 87, global step 305800: 'val_loss' reached -10.18262 (best -10.18262), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=87-step=305800.ckpt' as top 5
+Epoch 88: 100%|| 3475/3475 [06:52<00:00,  8.43it/s, v_num=0, val_loss=-10.1]Epoch 88, global step 309275: 'val_loss' reached -10.13483 (best -10.18262), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=88-step=309275.ckpt' as top 5
+Epoch 89: 100%|| 3475/3475 [06:52<00:00,  8.43it/s, v_num=0, val_loss=-10.1]Epoch 89, global step 312750: 'val_loss' reached -10.06574 (best -10.18262), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=89-step=312750.ckpt' as top 5
+Epoch 90: 100%|| 3475/3475 [06:52<00:00,  8.43it/s, v_num=0, val_loss=-10.2]Epoch 90, global step 316225: 'val_loss' reached -10.17049 (best -10.18262), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=90-step=316225.ckpt' as top 5
+Epoch 91: 100%|| 3475/3475 [06:52<00:00,  8.42it/s, v_num=0, val_loss=-10.1]Epoch 91, global step 319700: 'val_loss' reached -10.14963 (best -10.18262), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=91-step=319700.ckpt' as top 5
+Epoch 92: 100%|| 3475/3475 [06:52<00:00,  8.42it/s, v_num=0, val_loss=-10.1]Epoch 92, global step 323175: 'val_loss' reached -10.14364 (best -10.18262), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=92-step=323175.ckpt' as top 5
+Epoch 93: 100%|| 3475/3475 [06:52<00:00,  8.42it/s, v_num=0, val_loss=-10.2]Metric val_loss improved by 0.042 >= min_delta = 0.0. New best score: -10.224
+Epoch 93, global step 326650: 'val_loss' reached -10.22419 (best -10.22419), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=93-step=326650.ckpt' as top 5
+Epoch 94: 100%|| 3475/3475 [06:52<00:00,  8.42it/s, v_num=0, val_loss=-10.1]Epoch 94, global step 330125: 'val_loss' reached -10.14636 (best -10.22419), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=94-step=330125.ckpt' as top 5
+Epoch 95: 100%|| 3475/3475 [06:52<00:00,  8.42it/s, v_num=0, val_loss=-10.2]Epoch 95, global step 333600: 'val_loss' reached -10.17204 (best -10.22419), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=95-step=333600.ckpt' as top 5
+Epoch 96: 100%|| 3475/3475 [06:52<00:00,  8.42it/s, v_num=0, val_loss=-10.2]Epoch 96, global step 337075: 'val_loss' reached -10.18647 (best -10.22419), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=96-step=337075.ckpt' as top 5
+Epoch 97: 100%|| 3475/3475 [06:53<00:00,  8.40it/s, v_num=0, val_loss=-10.2]Epoch 97, global step 340550: 'val_loss' reached -10.19522 (best -10.22419), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=97-step=340550.ckpt' as top 5
+Epoch 98: 100%|| 3475/3475 [06:53<00:00,  8.41it/s, v_num=0, val_loss=-10.2]Epoch 98, global step 344025: 'val_loss' reached -10.18492 (best -10.22419), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=98-step=344025.ckpt' as top 5
+Epoch 99: 100%|| 3475/3475 [06:53<00:00,  8.41it/s, v_num=0, val_loss=-10.1]Epoch 99, global step 347500: 'val_loss' was not in top 5
+Epoch 100: 100%|| 3475/3475 [06:53<00:00,  8.41it/s, v_num=0, val_loss=-10.3]Metric val_loss improved by 0.080 >= min_delta = 0.0. New best score: -10.304
+Epoch 100, global step 350975: 'val_loss' reached -10.30389 (best -10.30389), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=100-step=350975.ckpt' as top 5
+Epoch 101: 100%|| 3475/3475 [06:53<00:00,  8.41it/s, v_num=0, val_loss=-10.3]Metric val_loss improved by 0.008 >= min_delta = 0.0. New best score: -10.311
+Epoch 101, global step 354450: 'val_loss' reached -10.31140 (best -10.31140), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=101-step=354450.ckpt' as top 5
+Epoch 102: 100%|| 3475/3475 [06:53<00:00,  8.40it/s, v_num=0, val_loss=-10.3]Epoch 102, global step 357925: 'val_loss' reached -10.26943 (best -10.31140), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=102-step=357925.ckpt' as top 5
+Epoch 103: 100%|| 3475/3475 [06:53<00:00,  8.41it/s, v_num=0, val_loss=-10.3]Epoch 103, global step 361400: 'val_loss' reached -10.28256 (best -10.31140), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=103-step=361400.ckpt' as top 5
+Epoch 104: 100%|| 3475/3475 [06:53<00:00,  8.40it/s, v_num=0, val_loss=-10.3]Epoch 104, global step 364875: 'val_loss' reached -10.29559 (best -10.31140), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=104-step=364875.ckpt' as top 5
+Epoch 105: 100%|| 3475/3475 [06:54<00:00,  8.39it/s, v_num=0, val_loss=-10.3]Epoch 105, global step 368350: 'val_loss' reached -10.28255 (best -10.31140), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=105-step=368350.ckpt' as top 5
+Epoch 106: 100%|| 3475/3475 [06:54<00:00,  8.38it/s, v_num=0, val_loss=-10.3]Epoch 106, global step 371825: 'val_loss' was not in top 5
+Epoch 107: 100%|| 3475/3475 [06:53<00:00,  8.40it/s, v_num=0, val_loss=-10.3]Epoch 107, global step 375300: 'val_loss' reached -10.30459 (best -10.31140), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=107-step=375300.ckpt' as top 5
+Epoch 108: 100%|| 3475/3475 [06:54<00:00,  8.39it/s, v_num=0, val_loss=-10.3]Metric val_loss improved by 0.002 >= min_delta = 0.0. New best score: -10.313
+Epoch 108, global step 378775: 'val_loss' reached -10.31305 (best -10.31305), saving model to '/home/dangsx/asteroid/egs/librimix/dilatedDPRNN/exp/diff_e2e/new/enh_sep_6_baseline/checkpoints/epoch=108-step=378775.ckpt' as top 5
+Epoch 109: 100%|| 3475/3475 [06:54<00:00,  8.38it/s, v_num=0, val_loss=-10.3]Epoch 109, global step 382250: 'val_loss' was not in top 5
+Epoch 110: 100%|| 3475/3475 [06:54<00:00,  8.39it/s, v_num=0, val_loss=-10.3]Epoch 110, global step 385725: 'val_loss' was not in top 5
+Epoch 111: 100%|| 3475/3475 [06:53<00:00,  8.40it/s, v_num=0, val_loss=-10.3]Epoch 111, global step 389200: 'val_loss' was not in top 5
+Epoch 112: 100%|| 3475/3475 [06:54<00:00,  8.39it/s, v_num=0, val_loss=-10.3]Epoch 112, global step 392675: 'val_loss' was not in top 5
+Epoch 113: 100%|| 3475/3475 [06:54<00:00,  8.39it/s, v_num=0, val_loss=-10.3]Epoch 113, global step 396150: 'val_loss' was not in top 5
+Epoch 114: 100%|| 3475/3475 [06:54<00:00,  8.39it/s, v_num=0, val_loss=-10.3]Epoch 114, global step 399625: 'val_loss' was not in top 5
+Epoch 115: 100%|| 3475/3475 [06:58<00:00,  8.31it/s, v_num=0, val_loss=-10.3]Epoch 115, global step 403100: 'val_loss' was not in top 5
+Epoch 116: 100%|| 3475/3475 [06:51<00:00,  8.44it/s, v_num=0, val_loss=-10.3]Epoch 116, global step 406575: 'val_loss' was not in top 5
+Epoch 117: 100%|| 3475/3475 [06:52<00:00,  8.43it/s, v_num=0, val_loss=-10.2]Epoch 117, global step 410050: 'val_loss' was not in top 5
+Epoch 118: 100%|| 3475/3475 [06:52<00:00,  8.43it/s, v_num=0, val_loss=-10.2]Epoch 118, global step 413525: 'val_loss' was not in top 5
+Epoch 119: 100%|| 3475/3475 [06:54<00:00,  8.38it/s, v_num=0, val_loss=-10.3]Epoch 119, global step 417000: 'val_loss' was not in top 5
+`Trainer.fit` stopped: `max_epochs=120` reached.
+Epoch 119: 100%|| 3475/3475 [06:54<00:00,  8.38it/s, v_num=0, val_loss=-10.3](asteroid_2) dangsx@deepest:~/asteroid/egs/librimix/dilatedDPRNN$ python eval_e2e_noisy_sep.py
+
+(asteroid_2) dangsx@deepest:~/asteroid/egs/librimix/dilatedDPRNN$ python eval_e2e_noisy_sep.py
+2023-08-06 16:29:09 | INFO | fairseq.tasks.text_to_speech | Please install tensorboardX: pip install tensorboardX
+100%|| 3000/3000 [23:02<00:00,  2.17it/s]Overall metrics :
+{'sar': 10.853637008905006,
+ 'sar_imp': 3.970482497271923,
+ 'sdr': 10.291139924633868,
+ 'sdr_imp': 12.07137128169746,
+ 'si_sdr': 9.461473825362821,
+ 'si_sdr_imp': 11.456444329016755,
+ 'sir': 22.252108791289523,
+ 'sir_imp': 22.075131224074187,
+ 'stoi': 0.8428358248997356,
+ 'stoi_imp': 0.19798669490692933}
+
+Don't forget to share your pretrained models at https://zenodo.org/communities/asteroid-models/! =)
+You can directly use our CLI for that, run this:
+`asteroid-upload exp/diff_e2e/new/enh_sep_6_baseline/publish_dir --uploader "Your name here"`
+
+(asteroid_2) dangsx@deepest:~/asteroid/egs/librimix/dilatedDPRNN$
